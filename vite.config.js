@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
+  // relative URLs so dist/ works from any subpath (e.g. GitHub Pages /design-portfolio/)
+  base: './',
   optimizeDeps: {
     // These are only reached through lazy() imports. Without listing them, Vite finds them
     // mid-session, re-bundles, and the in-flight chunk requests fail with 504 "Outdated Optimize Dep".

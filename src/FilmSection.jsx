@@ -6,9 +6,10 @@ import { useInView } from './useInView.js'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
-const VIDEO_WEBM = '/media/studio-film.webm'
-const VIDEO_MP4 = '/media/studio-film.mp4' // Safari before 17.4 has no VP9 webm
-const POSTER = '/media/studio-film-poster.jpg'
+const MEDIA = `${import.meta.env.BASE_URL}media/`
+const VIDEO_WEBM = `${MEDIA}studio-film.webm`
+const VIDEO_MP4 = `${MEDIA}studio-film.mp4` // Safari before 17.4 has no VP9 webm
+const POSTER = `${MEDIA}studio-film-poster.jpg`
 const PIN_LENGTH = '+=160%' // scroll distance the section stays pinned
 
 export default function FilmSection() {

@@ -5,7 +5,7 @@ import * as THREE from 'three'
 import RoomLight from './RoomLight.jsx'
 
 // Lantern by Microsoft, CC0 (KhronosGroup glTF-Sample-Assets)
-const MODEL_URL = '/models/lantern.glb'
+const MODEL_URL = `${import.meta.env.BASE_URL}models/lantern.glb`
 const TURN = Math.PI * 1.1 // rotation across the whole section scroll
 const GLOW_MAX = 4
 

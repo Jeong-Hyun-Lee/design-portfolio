@@ -191,9 +191,9 @@ function Works() {
           <li key={w.slug} className="work">
             <div className="work-media">
               <picture>
-                <source srcSet={`/images/works/${w.slug}.webp`} type="image/webp" />
+                <source srcSet={`${import.meta.env.BASE_URL}images/works/${w.slug}.webp`} type="image/webp" />
                 <img
-                  src={`/images/works/${w.slug}.jpg`}
+                  src={`${import.meta.env.BASE_URL}images/works/${w.slug}.jpg`}
                   alt={w.alt}
                   width="1600"
                   height="1000"
