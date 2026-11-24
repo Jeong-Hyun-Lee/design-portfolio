@@ -23,6 +23,11 @@
   --band: clamp(4rem, 2rem + 8vw, 9rem);
   --radius: 3px;
 
+  --bar-h: 4rem;
+  /* big title: sized so "스튜디오 접" + glyph stay on one line down to 320px */
+  --mark-size: clamp(2.25rem, 13vw, 12rem);
+  --mark-gap: clamp(1rem, 3vw, 2.5rem);
+
   color-scheme: light;
 }
 
@@ -73,16 +78,40 @@ a {
 
 .masthead {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1.25rem var(--page-x);
+  align-items: center;
+  justify-content: flex-end;
+  height: var(--bar-h);
+  padding: 0 var(--page-x);
 }
 
-.wordmark {
+/* big title that docks into the bar; Masthead.jsx sets its (negative) top and scale */
+.bigmark {
+  position: sticky;
+  z-index: 11;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.12em;
+  width: fit-content;
+  margin: 0 0 var(--mark-gap) var(--page-x);
   font-family: var(--display);
-  font-size: var(--t-lead);
+  font-size: var(--mark-size);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
   text-decoration: none;
+  transform-origin: left bottom;
+  will-change: transform;
+}
+
+.bigmark .glyph {
+  width: 0.9em;
+  height: 0.9em;
+}
+
+.bigmark .glyph polyline {
+  stroke: var(--mark);
+  stroke-width: 0.5;
+  stroke-linejoin: miter;
 }
 
 .nav {
@@ -227,7 +256,7 @@ a {
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
   align-items: end;
   gap: var(--gutter);
-  min-height: calc(100svh - 4.5rem);
+  min-height: calc(100svh - var(--bar-h) - var(--mark-size) * 0.9 - var(--mark-gap));
   padding: 0 var(--page-x) var(--gutter);
 }
 
@@ -557,46 +586,11 @@ a {
   outline-color: var(--zinc);
 }
 
-.footer-head {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: var(--gutter);
-  padding-bottom: clamp(2rem, 5vw, 4rem);
-  border-bottom: 1px solid #3a3f44;
-}
-
-.footer-mark {
-  font-family: var(--display);
-  /* sized to stay on one line next to the glyph down to 320px */
-  font-size: clamp(2.25rem, 10vw, 12rem);
-  line-height: 0.9;
-  letter-spacing: -0.03em;
-  white-space: nowrap;
-}
-
-.footer-glyph {
-  flex-shrink: 0;
-  width: clamp(3rem, 1rem + 8vw, 11rem);
-  aspect-ratio: 1;
-}
-
-.footer-glyph .glyph {
-  width: 100%;
-  height: 100%;
-}
-
-.footer-glyph .glyph polyline {
-  stroke: var(--mark);
-  stroke-width: 0.5;
-  stroke-linejoin: miter;
-}
-
 .footer-cols {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 2rem var(--gutter);
-  padding-block: clamp(2rem, 5vw, 3.5rem);
+  padding-bottom: clamp(2rem, 5vw, 3.5rem);
 }
 
 .footer-label {
@@ -748,10 +742,6 @@ a {
 }
 
 @media (max-width: 380px) {
-  .wordmark {
-    font-size: var(--t-base);
-  }
-
   .nav {
     gap: 0.6rem;
     font-size: 0.8125rem;
@@ -776,8 +766,8 @@ a {
 /* phones held sideways: little height to spend */
 
 @media (orientation: landscape) and (max-height: 500px) {
-  .masthead {
-    padding-block: 0.6rem;
+  :root {
+    --bar-h: 3rem;
   }
 
   .hero-stage {

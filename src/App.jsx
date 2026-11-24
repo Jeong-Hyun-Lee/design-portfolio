@@ -2,7 +2,8 @@ import { lazy, Suspense, useRef, useState, useSyncExternalStore } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import { outline } from './shapes.js'
+import Glyph from './Glyph.jsx'
+import Masthead from './Masthead.jsx'
 import { useActiveSection, useInView } from './useInView.js'
 import { useSmoothScroll } from './useSmoothScroll.js'
 import AlleySection from './AlleySection.jsx'
@@ -100,17 +101,6 @@ function usePrefersReducedMotion() {
       return () => query.removeEventListener('change', onChange)
     },
     () => window.matchMedia(REDUCED_MOTION).matches,
-  )
-}
-
-function Glyph({ name }) {
-  const points = outline(name)
-    .map((p) => `${p.x},${-p.y}`)
-    .join(' ')
-  return (
-    <svg className="glyph" viewBox="-2.6 -2.6 5.2 5.2" aria-hidden="true">
-      <polyline points={points} />
-    </svg>
   )
 }
 
@@ -292,22 +282,7 @@ export default function App() {
 
   return (
     <>
-      <header className="masthead">
-        <a className="wordmark" href="#top">
-          스튜디오 접
-        </a>
-        <nav aria-label="주요 메뉴">
-          <ul className="nav">
-            {NAV.map((n) => (
-              <li key={n.id}>
-                <a href={`#${n.id}`} aria-current={active === n.id ? 'true' : undefined}>
-                  {n.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </header>
+      <Masthead nav={NAV} active={active} />
       <main id="top">
         <Hero />
         <Services />
@@ -318,13 +293,6 @@ export default function App() {
         <Contact />
       </main>
       <footer className="footer">
-        <div className="footer-head">
-          <p className="footer-mark">스튜디오 접</p>
-          <div className="footer-glyph">
-            <Glyph name="ㄱ" />
-          </div>
-        </div>
-
         <div className="footer-cols">
           <div>
             <h2 className="footer-label">찾아오는 길</h2>

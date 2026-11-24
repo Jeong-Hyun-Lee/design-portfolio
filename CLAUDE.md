@@ -43,6 +43,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 페이지는 `App.jsx`에 나열한 섹션이 위에서 아래로 이어진다. 순서는 Hero, Services, AlleySection, Works, FilmSection, Process, Contact다. 섹션 여러 곳에 걸치는 동작은 섹션 안이 아니라 훅에 둔다.
 
+**상단 제목 (`Masthead.jsx`)**
+
+- 메뉴만 있는 고정 바(`.masthead`, 높이 `--bar-h`)와, 그 아래 큰 "스튜디오 접" 제목(`.bigmark`)으로 이뤄진다.
+- 제목은 `position: sticky`이고, `top`을 JS가 음수로 계산해 넣는다. 그래서 제목 아랫부분 20px만 바 안에 남을 때까지 올라간 뒤 멈춘다.
+- 같은 스크롤 구간 동안 왼쪽 아래 기준으로 20px 높이까지 줄어들기 때문에, 멈추는 순간 바 안에 작은 로고로 들어맞는다.
+- sticky가 페이지 끝까지 유지되려면 `.bigmark`가 `#root`의 직계 자식이어야 한다. `<header>`나 다른 래퍼 안으로 옮기면 그 래퍼가 끝날 때 함께 풀린다.
+
 **접기 계산 (`shapes.js`)**
 
 - 콘셉트는 철판 띠 한 장(관절로 이은 16조각)을 접어 한글 자모를 만드는 것이다.
