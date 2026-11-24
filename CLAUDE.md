@@ -19,6 +19,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run check`: 유일한 테스트인 `src/shapes.check.js`를 실행한다.
   - 테스트 프레임워크 없이 `node:assert`로 접기 계산을 검증한다.
 - PowerShell에서는 `npm run dev -- --port N`의 포트 옵션이 전달되지 않는다. `npx vite --port N --strictPort`를 쓴다.
+- `vite.config.js`의 `base`가 `'./'`라서 `dist/`는 어느 하위 경로(GitHub Pages `/design-portfolio/` 등)에서도 동작한다. `public/` 에셋은 `/media/...`처럼 루트 경로로 쓰지 말고 `${import.meta.env.BASE_URL}media/...`로 참조한다. `dist/index.html`을 더블클릭해 `file://`로 열면 브라우저가 모듈 스크립트와 GLB 로딩을 막으므로, 확인은 `npm run preview`로 한다.
 
 ## 개발 서버에서 주의할 점
 
