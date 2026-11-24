@@ -1,13 +1,16 @@
 {
-  "name": "studio-jeop",
+  "name": "design-portfolio",
   "private": true,
   "version": "0.1.0",
   "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "check": "node src/shapes.check.js"
+    "dev": "npm run dev -w apps/studio-jeop",
+    "build": "npm run build --workspaces --if-present",
+    "check": "npm run check --workspaces --if-present"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

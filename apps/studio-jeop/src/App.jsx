@@ -4,11 +4,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
 import Glyph from './Glyph.jsx'
 import Masthead from './Masthead.jsx'
-import { useActiveSection, useInView } from './useInView.js'
-import { useSmoothScroll } from './useSmoothScroll.js'
+import { useActiveSection, useInView } from '@portfolio/shared/useInView.js'
+import { useSmoothScroll } from '@portfolio/shared/useSmoothScroll.js'
 import AlleySection from './AlleySection.jsx'
 import FilmSection from './FilmSection.jsx'
-import SceneBoundary from './SceneBoundary.jsx'
+import SceneBoundary from '@portfolio/shared/SceneBoundary.jsx'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 

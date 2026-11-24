@@ -1,6 +1,6 @@
 브랜드 디자인 스튜디오 랜딩페이지에 쓸 이미지와 영상 에셋을 만들어 줘.
 프로젝트 루트: C:\Users\krinjosl\Desktop\workspace\design-portfolio (Vite + React)
-코드(src/, index.html, vite.config.js)는 수정하지 말고, 아래 경로에 파일만 만들어.
+코드(apps/studio-jeop의 src/, index.html, vite.config.js)는 수정하지 말고, 아래 경로에 파일만 만들어.
 
 ## 배경
 - 스튜디오 이름은 "스튜디오 접"이고, 서울 문래동 철공소 골목에 있는 가상의 브랜드 디자인 스튜디오야.
@@ -19,21 +19,21 @@
 
 ## 1. 작업실 영상 (페이지가 멈춘 동안 전체 화면으로 재생돼)
 - 파일:
-  - public/media/studio-film.mp4 (H.264, yuv420p, faststart)
-  - public/media/studio-film.webm (VP9)
+  - apps/studio-jeop/public/media/studio-film.mp4 (H.264, yuv420p, faststart)
+  - apps/studio-jeop/public/media/studio-film.webm (VP9)
 - 규격: 1920x1080, 24 또는 30fps, 8~15초, 오디오 트랙 없음, 처음과 끝이 자연스럽게 이어지는 루프.
 - 용량: 각 6MB 이하.
 - 장면: 장갑 낀 손이 회색 아연판에 파란 마커로 접을 선을 긋고, 절곡기가 판을 90도로 접고, 접힌 판이 ㄱ 자 모양으로 서 있는 모습.
   - 가까운 화면과 중간 거리 화면을 섞어 줘.
   - 화면 아래쪽 1/3에 흰 제목 글자가 올라가니, 그 영역은 너무 밝거나 복잡하지 않게 해 줘.
-- 포스터: public/media/studio-film-poster.jpg (1920x1080, 250KB 이하, 영상의 대표 프레임).
+- 포스터: apps/studio-jeop/public/media/studio-film-poster.jpg (1920x1080, 250KB 이하, 영상의 대표 프레임).
 - 영상 생성이 안 되면 아래처럼 대체해 줘.
   - 같은 장면으로 정지 이미지 4~5장을 만들어.
   - ffmpeg로 천천히 확대하고 이동하는 효과와 교차 전환을 넣어 위 규격의 영상으로 만들어.
   - 이렇게 했으면 결과 보고에 그렇다고 적어 줘.
 
 ## 2. 작업 사례 이미지 4장
-- 파일: public/images/works/<슬러그>.webp 와 같은 이름의 .jpg
+- 파일: apps/studio-jeop/public/images/works/<슬러그>.webp 와 같은 이름의 .jpg
 - 규격: 1600x1000 (16:10), webp는 250KB 이하.
 - 사례:
   - bitnara-sign.webp: 을지로 전기 상가 골목에 걸린 접힌 철판 돌출 간판. 저녁 무렵 상가 불빛, 간판 형태만 보이고 글자는 없음.
@@ -43,12 +43,12 @@
 - 4장이 한 세트로 보이도록 색감, 노출, 대비를 맞춰 줘.
 
 ## 3. 공유 썸네일
-- 파일: public/og.jpg (1200x630, 200KB 이하)
+- 파일: apps/studio-jeop/public/og.jpg (1200x630, 200KB 이하)
 - 내용: 회색 아연판 위에 ㄱ 자로 접힌 철판 스트립 하나와 파란 접는 선.
   - 단순한 정물 사진이고, 왼쪽 40%는 여백으로 비워 줘.
 
 ## 4. 결과물
-- public/assets-manifest.json: 파일마다 아래 필드를 담은 배열.
+- apps/studio-jeop/public/assets-manifest.json: 파일마다 아래 필드를 담은 배열.
   - path
   - width
   - height

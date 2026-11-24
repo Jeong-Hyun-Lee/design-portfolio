@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
-import RoomLight from './RoomLight.jsx'
+import RoomLight from '@portfolio/shared/RoomLight.jsx'
 import { SEGMENTS, SEG_LEN, SHAPES, layout, toAngles, wrapAngle } from './shapes.js'
 
 const THICKNESS = 0.16

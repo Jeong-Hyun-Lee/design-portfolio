@@ -1,0 +1,19 @@
+{
+  "name": "@portfolio/shared",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    "./vite": "./vite.js",
+    "./*": "./src/*"
+  },
+  "peerDependencies": {
+    "@gsap/react": "*",
+    "@react-three/fiber": "*",
+    "gsap": "*",
+    "lenis": "*",
+    "react": "*",
+    "three": "*",
+    "vite": "*"
+  }
+}

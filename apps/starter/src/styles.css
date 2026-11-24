@@ -1,0 +1,34 @@
+:root {
+  --bg: #f4f4f1;
+  --fg: #1c1f22;
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 3rem);
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, sans-serif;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+
+.intro {
+  display: grid;
+  place-content: center;
+  min-height: 100svh;
+  padding: var(--gutter);
+  text-align: center;
+  transition: opacity 400ms;
+}
+
+.intro[data-in-view='false'] {
+  opacity: 0.3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro {
+    transition: none;
+  }
+}

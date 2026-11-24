@@ -2,8 +2,8 @@ import { lazy, Suspense, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import { useInView } from './useInView.js'
-import SceneBoundary from './SceneBoundary.jsx'
+import { useInView } from '@portfolio/shared/useInView.js'
+import SceneBoundary from '@portfolio/shared/SceneBoundary.jsx'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
