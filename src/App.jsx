@@ -14,6 +14,10 @@ gsap.registerPlugin(ScrollTrigger, useGSAP)
 const FoldScene = lazy(() => import('./FoldScene.jsx'))
 
 const PARALLAX_PX = 70 // travel of a data-speed="1" element across its section
+// Works images: travel in % of the image's own height. The image is 140% of its frame
+// (see .work-media img), so up to ±14% stays inside the frame without showing an edge.
+const IMAGE_SHIFT_PCT = 13
+const IMAGE_ZOOM = 1.12 // starts slightly zoomed in and settles to 1 as it scrolls past
 
 const NAV = [
   { id: 'services', label: '하는 일' },
@@ -199,7 +203,6 @@ function Works() {
                   height="1000"
                   loading="lazy"
                   decoding="async"
-                  data-speed="0.45"
                 />
               </picture>
             </div>
@@ -262,6 +265,18 @@ function useParallax() {
             y: -shift,
             ease: 'none',
             scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true },
+          },
+        )
+      })
+      gsap.utils.toArray('.work-media img').forEach((img) => {
+        gsap.fromTo(
+          img,
+          { yPercent: -IMAGE_SHIFT_PCT, scale: IMAGE_ZOOM },
+          {
+            yPercent: IMAGE_SHIFT_PCT,
+            scale: 1,
+            ease: 'none',
+            scrollTrigger: { trigger: img.closest('.work-media'), start: 'top bottom', end: 'bottom top', scrub: true },
           },
         )
       })

@@ -389,13 +389,16 @@ a {
   height: 100%;
 }
 
-/* taller than the frame so the parallax shift never shows an edge */
+/* 140% of the frame, centred, so the parallax shift (IMAGE_SHIFT_PCT in App.jsx) never shows an edge */
 .work-media img {
+  position: absolute;
+  top: -20%; /* % of the frame height here; a % margin would follow the width */
+  left: 0;
   display: block;
   width: 100%;
-  height: calc(100% + 64px);
-  margin-top: -32px;
+  height: 140%;
   object-fit: cover;
+  will-change: transform;
 }
 
 .work-meta {
