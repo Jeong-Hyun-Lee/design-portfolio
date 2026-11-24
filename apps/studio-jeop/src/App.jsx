@@ -14,6 +14,7 @@ gsap.registerPlugin(ScrollTrigger, useGSAP)
 
 const FoldScene = lazy(() => import('./FoldScene.jsx'))
 
+const CONTACT_EMAIL = 'XXX@XXX.com'
 const PARALLAX_PX = 70 // travel of a data-speed="1" element across its section
 // Works images: travel in % of the image's own height. The image is 140% of its frame
 // (see .work-media img), so up to ±14% stays inside the frame without showing an edge.
@@ -235,7 +236,7 @@ function Contact() {
     <section id="contact" className="contact" aria-labelledby="contact-title">
       <h2 id="contact-title" className="contact-title">만들 글자가 있나요?</h2>
       <p className="contact-body">어떤 이름인지, 어디에 걸리는지, 언제까지 필요한지 보내 주세요. 사흘 안에 답장합니다.</p>
-      <a className="button" href="mailto:hello@studio-jeop.kr">
+      <a className="button" href={`mailto:${CONTACT_EMAIL}`}>
         메일 보내기
       </a>
     </section>
@@ -304,8 +305,8 @@ export default function App() {
           </div>
           <div>
             <h2 className="footer-label">연락</h2>
-            <a className="footer-link" href="mailto:hello@studio-jeop.kr">
-              hello@studio-jeop.kr
+            <a className="footer-link" href={`mailto:${CONTACT_EMAIL}`}>
+              {CONTACT_EMAIL}
             </a>
           </div>
           <nav aria-label="푸터 메뉴">
