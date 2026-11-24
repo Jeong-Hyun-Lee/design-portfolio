@@ -12,8 +12,7 @@ gsap.registerPlugin(ScrollTrigger, useGSAP)
 const HeroScene = lazy(() => import('../three/HeroScene.jsx'))
 
 /**
- * TOP_DESIGN.md: one rendered object on a cold grey canvas, one macOS-style window card,
- * one black button. All colour comes from the 3D scene (the green lasers).
+ * TOP_DESIGN.md: one rendered object on a cold grey canvas. All colour comes from the 3D scene.
  * `ref` is the section; App watches it to reveal the nav.
  */
 export default function Hero({ ref }) {
@@ -33,7 +32,7 @@ export default function Hero({ ref }) {
 
   return (
     <section ref={ref} id="top" className="hero" aria-labelledby="hero-title">
-      <div className="hero-stage" role="img" aria-label="나무 바닥과 흰 벽의 3D 전시장 모형 위로 초록 레이저 두 줄이 교차하는 장면">
+      <div className="hero-stage" role="img" aria-label="나무 바닥과 흰 벽의 3D 전시장 모형">
         <SceneBoundary fallback={<Photo name="hero/room" alt="" className="hero-fallback" isEager />}>
           <Suspense fallback={null}>
             <HeroScene progress={progress} isActive={isVisible} />
