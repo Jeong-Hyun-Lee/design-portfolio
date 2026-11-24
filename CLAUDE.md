@@ -16,10 +16,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - `apps/<이름>/`: 포트폴리오 하나가 Vite 앱 하나다. 각자 `index.html`, `src/`, `public/`, `vite.config.js`를 갖고, 빌드 결과도 각자의 `dist/`에 나온다.
   - `apps/studio-jeop`: "스튜디오 접" 사이트. 내부 구조는 `apps/studio-jeop/CLAUDE.md`에 있다.
+  - `apps/product`: 3D 가상 공간 서비스 소개 페이지. 내부 구조는 `apps/product/CLAUDE.md`에 있다.
   - `apps/starter`: 새 포트폴리오를 시작할 때 복사하는 최소 앱.
 - `packages/shared/` (`@portfolio/shared`): 앱들이 함께 쓰는 코드. 빌드 단계 없이 소스를 그대로 import한다.
   - `vite.js`의 `defineStaticSite({ models })`: 모든 앱의 Vite 설정. 앱의 `vite.config.js`는 이것만 부른다.
-  - `src/useSmoothScroll.js`, `src/useInView.js`(`useInView`, `useActiveSection`), `src/SceneBoundary.jsx`, `src/RoomLight.jsx`, `src/loadGlb.js`
+  - `src/useSmoothScroll.js`, `src/useInView.js`(`useInView`, `useActiveSection`), `src/usePrefersReducedMotion.js`, `src/SceneBoundary.jsx`, `src/RoomLight.jsx`, `src/loadGlb.js`
   - import 경로는 `@portfolio/shared/useInView.js`처럼 파일 이름까지 쓴다(`exports`의 `./*` → `./src/*`).
 - 라이브러리 의존성은 루트 `package.json`에만 둔다. 모든 앱이 같은 버전을 쓴다. 앱의 `package.json`에는 스크립트와 `@portfolio/shared`만 둔다.
 

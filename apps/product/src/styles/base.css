@@ -1,0 +1,393 @@
+/* Two design references meet on this page:
+   - the hero follows TOP_DESIGN.md (cold grey canvas, system font at 700-800, one window card, one black button)
+   - everything after it follows DESIGN.md (cream paper, thin serif display, Geist UI, orange only as outline) */
+
+:root {
+  /* hero — TOP_DESIGN */
+  --mist: #f1f2f3;
+  --carbon: #111111;
+  --white: #ffffff;
+  --graphite: #2d2d2d;
+  --pale: #dddddd;
+  --silver: #b4b4b4;
+  --font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* page — DESIGN */
+  --ink: #1f1c1b;
+  --canvas: #ebe9e1;
+  --linen: #f5f4f0;
+  --stone: #a69b92; /* borders and decoration only: too light for text */
+  --stone-text: #6f655d; /* stone darkened to pass 4.5:1 on cream and white */
+  --hairline: #d9d6ce;
+  --cobble: #c7c1b7;
+  --espresso: #2d2724;
+  --orange: #ff7714; /* outlines, arrows, markers — never a fill, never body text */
+  --serif: 'Noto Serif KR', Georgia, serif;
+  --sans: 'Geist', 'Noto Sans KR', system-ui, sans-serif;
+
+  --t-caption: 0.6875rem;
+  --t-small: 0.875rem;
+  --t-body: 1rem;
+  --t-sub: 1.125rem;
+  --t-h-sm: 1.5rem;
+  --t-h: clamp(2rem, 1.3rem + 2.2vw, 2.625rem);
+  --t-h-lg: clamp(2.5rem, 1rem + 5vw, 5.125rem);
+  --t-display: clamp(2.75rem, 0.8rem + 6.4vw, 6rem);
+
+  --nav-h: 56px;
+  --page-max: 1200px;
+  --page-x: max(20px, calc((100% - var(--page-max)) / 2));
+  --section-gap: clamp(64px, 4rem + 4vw, 128px);
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: var(--t-body);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  word-break: keep-all;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+dl,
+dd,
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* type */
+
+.display,
+.h-lg,
+.h,
+.h-sm {
+  font-family: var(--serif);
+  font-weight: 300;
+  color: var(--ink);
+}
+
+.display {
+  font-size: var(--t-display);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+.h-lg {
+  font-size: var(--t-h-lg);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+
+.h {
+  font-size: var(--t-h);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.h-sm {
+  font-size: var(--t-h-sm);
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-size: var(--t-caption);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--stone-text);
+}
+
+/* the one orange mark: an outlined square, never filled */
+.eyebrow::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--orange);
+}
+
+.eyebrow-light {
+  color: rgb(255 255 255 / 0.8);
+}
+
+/* buttons — DESIGN: dark fill or ghost with an orange arrow; 2px radius, no shadow */
+
+.btn-primary {
+  display: inline-block;
+  padding: 12px 18px;
+  border-radius: 2px;
+  background: var(--ink);
+  color: var(--white);
+  font-size: var(--t-small);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 4px;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font-size: var(--t-small);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-ghost .arrow {
+  color: var(--orange);
+  transition: transform 200ms;
+}
+
+/* reveal on scroll (App's useReveal) */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 700ms, transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-revealed='true'] {
+  opacity: 1;
+  transform: none;
+}
+
+/* nav — DESIGN: dark bar; slides in once the hero is mostly gone */
+
+.nav {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: var(--nav-h);
+  padding: 0 var(--page-x);
+  background: var(--ink);
+  color: var(--white);
+  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav[data-hidden='true'] {
+  transform: translateY(-100%);
+}
+
+.nav :focus-visible {
+  outline-color: var(--white);
+}
+
+.nav-logo {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 4px;
+}
+
+.nav-links a {
+  display: block;
+  padding: 8px 12px;
+  font-size: var(--t-small);
+  color: rgb(255 255 255 / 0.72);
+  text-decoration: none;
+}
+
+.nav-links a[aria-current='true'] {
+  color: var(--white);
+  text-decoration: underline;
+  text-decoration-color: var(--orange);
+  text-underline-offset: 6px;
+}
+
+.nav-cta {
+  margin-left: auto;
+  padding: 8px 12px;
+  border: 1px solid var(--white);
+  border-radius: 2px;
+  font-size: var(--t-small);
+  text-decoration: none;
+}
+
+/* hero — TOP_DESIGN */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100svh;
+  padding-bottom: 48px;
+  background: linear-gradient(var(--mist) 80%, var(--canvas));
+  font-family: var(--font-system);
+  color: var(--carbon);
+  letter-spacing: normal;
+}
+
+.hero-stage {
+  width: 100%;
+  height: min(66svh, 52rem);
+  min-height: 300px;
+  /* the laser grid would otherwise stop at a hard canvas edge */
+  mask-image: linear-gradient(#000 50%, transparent 96%);
+}
+
+.hero-fallback,
+.hero-fallback img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.window {
+  width: min(240px, 80vw);
+  margin-top: 30px;
+  padding: 10px;
+  border-radius: 25px;
+  background: var(--white);
+  box-shadow:
+    0 1px 3px rgb(17 17 17 / 0.08),
+    0 4px 12px rgb(17 17 17 / 0.06);
+  text-align: center;
+}
+
+.window-bar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 6px 8px;
+  border-bottom: 2px solid var(--pale);
+}
+
+.window-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--silver);
+}
+
+.window-dot + .window-dot {
+  background: var(--graphite);
+}
+
+.window-tag {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--silver);
+}
+
+.window-title {
+  padding: 20px 0 8px;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.036em;
+}
+
+.window-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin: 8px 0 10px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background: var(--carbon);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.25;
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .nav-links a:hover {
+    color: var(--white);
+  }
+
+  .btn-primary:hover {
+    background: var(--espresso);
+  }
+
+  .btn-ghost:hover .arrow {
+    transform: translateX(4px);
+  }
+}
+
+@media (max-width: 760px) {
+  .nav-links {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    transform: none;
+    transition: opacity 300ms;
+  }
+
+  .nav,
+  .btn-ghost .arrow {
+    transition: none;
+  }
+}
