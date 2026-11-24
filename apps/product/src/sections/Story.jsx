@@ -2,7 +2,7 @@ import Photo from '../Photo.jsx'
 
 /**
  * DESIGN.md's hero treatment, used mid-page: full-bleed warm photograph fading diagonally into
- * the cream canvas, a thin serif headline over it. Photo and headline move at different speeds
+ * the cream canvas, a light headline over it. Photo and headline move at different speeds
  * (data-parallax-img / data-speed, driven by App's useParallax).
  */
 export default function Story() {

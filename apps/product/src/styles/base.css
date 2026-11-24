@@ -1,6 +1,7 @@
 /* Two design references meet on this page:
-   - the hero follows TOP_DESIGN.md (cold grey canvas, system font at 700-800, one window card, one black button)
-   - everything after it follows DESIGN.md (cream paper, thin serif display, Geist UI, orange only as outline) */
+   - the hero follows TOP_DESIGN.md (cold grey canvas, one window card, one black button)
+   - everything after it follows DESIGN.md (cream paper, orange only as outline)
+   - Pretendard is shared across both sections */
 
 :root {
   /* hero — TOP_DESIGN */
@@ -10,8 +11,6 @@
   --graphite: #2d2d2d;
   --pale: #dddddd;
   --silver: #b4b4b4;
-  --font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 
   /* page — DESIGN */
   --ink: #1f1c1b;
@@ -23,8 +22,6 @@
   --cobble: #c7c1b7;
   --espresso: #2d2724;
   --orange: #ff7714; /* outlines, arrows, markers — never a fill, never body text */
-  --serif: 'Noto Serif KR', Georgia, serif;
-  --sans: 'Geist', 'Noto Sans KR', system-ui, sans-serif;
 
   --t-caption: 0.6875rem;
   --t-small: 0.875rem;
@@ -53,7 +50,7 @@ body {
   margin: 0;
   background: var(--canvas);
   color: var(--ink);
-  font-family: var(--sans);
+  font-family: 'Pretendard Variable', Pretendard, system-ui, sans-serif;
   font-size: var(--t-body);
   font-weight: 400;
   line-height: 1.5;
@@ -109,7 +106,6 @@ button {
 .h-lg,
 .h,
 .h-sm {
-  font-family: var(--serif);
   font-weight: 300;
   color: var(--ink);
 }

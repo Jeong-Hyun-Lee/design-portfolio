@@ -6,7 +6,7 @@ import { MANIFESTO } from '../content.js'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
-/** Large serif statement whose words ink in one by one as it scrolls through the viewport. */
+/** Large statement whose words ink in one by one as it scrolls through the viewport. */
 export default function Manifesto() {
   const section = useRef(null)
   const words = MANIFESTO.split(' ')
