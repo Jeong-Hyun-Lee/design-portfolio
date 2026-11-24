@@ -1,7 +1,8 @@
-import { Suspense, useMemo, useRef } from 'react'
+import { Suspense, use, useMemo, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Bounds, useGLTF } from '@react-three/drei'
+import { Bounds } from '@react-three/drei'
 import * as THREE from 'three'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import RoomLight from './RoomLight.jsx'
 
 // Lantern by Microsoft, CC0 (KhronosGroup glTF-Sample-Assets)
@@ -9,8 +10,33 @@ const MODEL_URL = `${import.meta.env.BASE_URL}models/lantern.glb`
 const TURN = Math.PI * 1.1 // rotation across the whole section scroll
 const GLOW_MAX = 4
 
+/** GLB bytes. file:// blocks fetch, so there the build's lantern.glb.js script carries them as base64. */
+function readModelBytes() {
+  if (location.protocol !== 'file:') {
+    return fetch(MODEL_URL).then((res) => {
+      if (!res.ok) throw new Error(`lantern model: HTTP ${res.status}`)
+      return res.arrayBuffer()
+    })
+  }
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script')
+    script.src = `${MODEL_URL}.js`
+    script.onload = () => {
+      const b64 = window.__lanternGlb
+      delete window.__lanternGlb
+      const bytes = Uint8Array.fromBase64?.(b64) ?? Uint8Array.from(atob(b64), (c) => c.charCodeAt(0))
+      resolve(bytes.buffer)
+    }
+    script.onerror = () => reject(new Error('lantern model: script failed to load'))
+    document.head.append(script)
+  })
+}
+
+let modelPromise = null
+const loadModel = () => (modelPromise ??= readModelBytes().then((buf) => new GLTFLoader().parseAsync(buf, '')))
+
 function Lantern({ progress }) {
-  const { scene } = useGLTF(MODEL_URL)
+  const { scene } = use(loadModel())
   const spin = useRef(null)
   const glowing = useMemo(() => {
     const mats = []
@@ -50,5 +76,3 @@ export default function LanternScene({ progress, isActive }) {
     </Canvas>
   )
 }
-
-useGLTF.preload(MODEL_URL)

@@ -15,15 +15,21 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## 명령어
 
 - `npm run dev`: Vite 개발 서버를 띄운다. 기본 포트는 5173이다.
-- `npm run build`: `dist/`에 프로덕션 빌드를 만든다. three.js 청크가 500kB를 넘는다는 경고가 나오는데, 지연 로딩되는 청크라서 정상이다.
+- `npm run build`: `dist/`에 프로덕션 빌드를 만든다. `dist/index.html`을 더블클릭(`file://`)해도 동작해야 한다.
+  - 빌드에서 `file-protocol-build` 플러그인이 하는 일:
+    - JS 전체를 classic `defer` 스크립트 하나(IIFE, 코드 분할 없음, 약 1.3MB)로 묶는다. `file://`에서는 크롬이 `type="module"`과 청크 로딩을 막기 때문이다.
+    - CSS의 `crossorigin`을 뗀다.
+    - GLB를 base64로 담은 `models/lantern.glb.js`를 추가로 만든다.
+  - `LanternScene`은 `file://`일 때만 이 스크립트 태그로 모델을 읽고, http에서는 `fetch`로 `.glb`를 읽는다. 그래서 drei `useGLTF` 대신 `GLTFLoader.parseAsync`를 쓴다.
+  - 빌드 때 나오는 `import.meta ... iife` 경고는 Vite preload 도우미에서 나는 것이고 동작과 무관하다.
+  - 새로 넣는 코드에서 `fetch`/XHR로 로컬 파일을 읽으면 `file://`에서 깨진다. 이미지·영상 태그는 괜찮다.
 - `npm run check`: 유일한 테스트인 `src/shapes.check.js`를 실행한다.
   - 테스트 프레임워크 없이 `node:assert`로 접기 계산을 검증한다.
 - PowerShell에서는 `npm run dev -- --port N`의 포트 옵션이 전달되지 않는다. `npx vite --port N --strictPort`를 쓴다.
-- `vite.config.js`의 `base`가 `'./'`라서 `dist/`는 어느 하위 경로(GitHub Pages `/design-portfolio/` 등)에서도 동작한다. `public/` 에셋은 `/media/...`처럼 루트 경로로 쓰지 말고 `${import.meta.env.BASE_URL}media/...`로 참조한다. `dist/index.html`을 더블클릭해 `file://`로 열면 브라우저가 모듈 스크립트와 GLB 로딩을 막으므로, 확인은 `npm run preview`로 한다.
-
+- `vite.config.js`의 `base`가 `'./'`라서 `dist/`는 어느 하위 경로(GitHub Pages `/design-portfolio/` 등)에서도 동작한다. `public/` 에셋은 `/media/...`처럼 루트 경로로 쓰지 말고 `${import.meta.env.BASE_URL}media/...`로 참조한다.
 ## 개발 서버에서 주의할 점
 
-- `lazy()`로만 불러오는 모듈이 쓰는 라이브러리는 모두 `vite.config.js`의 `optimizeDeps.include`에 적어야 한다.
+- (개발 서버 한정, 빌드는 하나로 묶인다) `lazy()`로만 불러오는 모듈이 쓰는 라이브러리는 모두 `vite.config.js`의 `optimizeDeps.include`에 적어야 한다.
   - 빠지면 Vite가 실행 도중에 의존성을 다시 묶는다. 그러면 청크 요청이 `504 Outdated Optimize Dep`로 실패하고 화면이 하얗게 빈다.
   - three, drei, gsap의 새 진입점을 import할 때도 마찬가지다.
 - 이 폴더의 개발 서버는 모두 `node_modules/.vite` 캐시를 함께 쓴다.
@@ -78,7 +84,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **3D**
 
-- 두 캔버스 모두 `lazy()` 청크이고 에러 처리 컴포넌트 `SceneBoundary`로 감싸 있다.
+- 두 캔버스 모두 `lazy()`로 불러오고(개발 서버에서만 별도 청크) 에러 처리 컴포넌트 `SceneBoundary`로 감싸 있다.
   - 로딩에 실패하거나 WebGL이 없으면 평면 그림으로 대체되거나 빈 영역으로 남는다.
   - 나머지 페이지는 계속 동작한다.
 - 금속 반사에 쓰는 환경맵은 `RoomLight`가 만든다(로컬 PMREM `RoomEnvironment`).
