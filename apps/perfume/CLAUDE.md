@@ -1,13 +1,15 @@
 # perfume
 
-가상 향수 브랜드 "윤슬"의 런칭 페이지다. WebGL 렌더링을 보여 주려고 만든 포트폴리오이고, 브랜드·가격·공방은 모두 지어낸 것이다(푸터에 밝힌다). 저장소 공통 규칙은 루트 `CLAUDE.md`에 있다.
+가상 향수 브랜드 "Perfume"의 런칭 페이지다. WebGL 렌더링을 보여 주려고 만든 포트폴리오이고, 브랜드·가격·공방은 모두 지어낸 것이다(푸터에 밝힌다). 저장소 공통 규칙은 루트 `CLAUDE.md`에 있다.
 
 - 개발: `npm run dev -w apps/perfume`
-- 테스트: `npm run check -w apps/perfume` (`src/check.js`: 병 단면, 입자 목표 형태, 워드마크 획, 스크롤 단계 계산, 각인 입력 정리)
+- 배포: 루트에서 `npm run deploy:perfume` (Cloudflare Pages `yunseul-perfume`, https://yunseul-perfume.pages.dev)
+- 테스트: `npm run check -w apps/perfume` (`src/check.js`: 병 단면, 입자 목표 형태, 로고 폰트 글리프, 스크롤 단계 계산, 각인 입력 정리)
 - 디자인 기준
   - 어두운 구간(히어로, 향 노트, 병 분해): `TOP_DESIGN.md` (Vivid+Co). 색은 유리가 가르는 프리즘 빛에서만 나온다.
-  - 밝은 구간(전환, 구성기, 공방): `DESIGN.md` (Letter). 갤러리 벽 3색 = 향 3종, 모서리 2px, 행동 버튼은 청록 하나.
-  - 마지막 섹션은 Hyper Tria 구도(검정 위 크롬 워드마크).
+  - 밝은 구간(전환, 구성기, 공방): `DESIGN.md` (Letter). 갤러리 벽 3색 = 향 3종, 모서리 2px, 행동 버튼은 잉크색(`--vault`) 하나. 선택지는 회색 상자 대신 가는 선과 밑줄로 고른다.
+  - 마지막 섹션은 Hyper Tria 구도(검정 위 은빛 워드마크).
+  - 로고타입(내비 로고, 히어로 큰 제목, 병 라벨, 마지막 3D 워드마크)은 Marcellus 한 가지다. 본문 서체 규칙의 예외.
 
 ## 구조
 
@@ -21,8 +23,9 @@
 - `Bottle.jsx`: 팔각 크리스털 병. 유리는 drei `MeshTransmissionMaterial`(굴절, 색수차), 향수는 `liquidMaterial.js`의 직접 쓴 셰이더(채움 높이로 잘라내고, 병의 움직임에 따라 감쇠 스프링으로 출렁인다). 병 분해 때 부품이 흩어지고 `focusPoint`를 피사계 심도에 넘긴다.
 - `bottleShape.js`: 병·향수 단면, 부품 치수, 분해 오프셋. 숫자만 있어서 테스트할 수 있다.
 - `NoteParticles.jsx`: GPGPU 입자(three `GPUComputationRenderer`, 위치를 half-float 텍스처에 두고 셰이더로 적분). 목표 형태 4개(`noteShapes.js`: 흩어진 빛, 탑 나선, 미들 목련, 베이스 물결) 사이를 섞고 컬 노이즈로 흐르며 포인터를 피한다.
-- `HeroTitle.jsx`: 병 뒤에 둔 거대한 "윤슬"(canvas 텍스처)과 빛줄기. 유리가 이것을 굴절시키는 것이 히어로의 핵심 연출이다.
-- `Wordmark.jsx` + `wordmark.js`: 마무리 섹션의 크롬 "윤슬". 획을 캡슐과 토러스로 만든다(한글 폰트 지오메트리 없이).
+- `HeroTitle.jsx`: 병 뒤에 둔 거대한 "Perfume"(canvas 텍스처)과 빛줄기. 유리가 이것을 굴절시키는 것이 히어로의 핵심 연출이다.
+- `Wordmark.jsx`: 마무리 섹션의 은빛 "Perfume". three `TextGeometry`로 돌출하고 얇은 베벨을 준다. 마무리 구간에서는 블룸을 줄여 네온처럼 번지지 않게 한다.
+- `perfumeFont.json`: Marcellus(SIL OFL 1.1)에서 "Perfume"의 글자 6개만 뽑은 three typeface JSON(약 6.6KB). 번들에 들어가므로 `file://`에서도 된다. three npm 패키지에는 `examples/fonts`가 없어서 직접 만들었다. 글자를 바꾸면 opentype.js로 다시 뽑아야 한다(TTF 경로의 M/L/Q/C를 three 형식 `m x y`, `l x y`, `q x y cpx cpy`, `b x y c1x c1y c2x c2y`로 옮기고 `resolution`은 unitsPerEm). `check.js`가 `BRAND`의 모든 글자가 들어 있는지 확인한다.
 - `Effects.jsx`: 후처리. 피사계 심도(데스크톱만), 블룸(HDR 1 이상만), 스크롤 속도에 따라 커지는 색수차, 필름 그레인, 비네트, Neutral 톤 매핑.
 - `textures.js`: 히어로 제목과 병 라벨을 canvas로 그린다. 페이지의 Google Fonts를 그대로 쓰므로 폰트 파일이 따로 필요 없고 `file://`에서도 된다.
 - 환경 반사는 drei `<Environment>` 안의 `Lightformer`로 로컬에서 만든다(외부 HDR 없음).
@@ -34,5 +37,7 @@
 
 ## 주의
 
+- 스크롤 감도: `App.jsx`의 `SCROLL_FEEL`(Lenis `lerp` 0.16, `wheelMultiplier` 1.25). 긴 고정 섹션 높이는 `sections.css`의 `.notes`, `.anatomy`, `.shift`, `.closing`.
+- drei `Text3D`는 쓰지 않는다. three r187의 TextGeometry는 `depth`를 읽는데 drei는 `height`를 넘겨서 두께가 기본값 50이 된다.
 - 개발 중 `rig.js`를 고치면 HMR이 모듈을 둘로 나눠 장면이 스크롤을 따라가지 않을 수 있다. 새로고침(F5)하면 된다.
 - 동작 줄이기 설정: Lenis 끔, 병 자동 회전·흔들림 끔, 입자 흐름 약하게, 색수차 고정.

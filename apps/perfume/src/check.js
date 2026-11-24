@@ -2,10 +2,10 @@
 import assert from 'node:assert/strict'
 import { GLASS, LIQUID, LIQUID_Y, CAP, COLLAR, volumeScale, explodeOffsets } from './three/bottleShape.js'
 import { makeTargets } from './three/noteShapes.js'
-import { STROKES, WORDMARK_SIZE } from './three/wordmark.js'
+import { readFileSync } from 'node:fs'
 import { poseAt, stageKeyframes, lightness, noteBlend, particleOpacity } from './rig.js'
 import { cleanEngraving } from './config.js'
-import { ENGRAVING_MAX } from './content.js'
+import { BRAND, ENGRAVING_MAX } from './content.js'
 
 const close = (a, b, eps = 1e-9) => assert.ok(Math.abs(a - b) < eps, `${a} != ${b}`)
 
@@ -51,12 +51,9 @@ for (const [name, data] of Object.entries(targets)) {
 }
 assert.deepEqual(makeTargets(16).top, makeTargets(16).top)
 
-// wordmark strokes fit their box once centred
-STROKES.forEach((s) => {
-  const pts = s.ring ? [s.ring] : s.line
-  pts.flat().forEach((v) => assert.ok(Number.isFinite(v)))
-  pts.forEach(([x, y]) => assert.ok(Math.abs(x) <= WORDMARK_SIZE.width / 2 + 0.01 && Math.abs(y) <= 0.7))
-})
+// the subset logotype font covers every letter of the brand (TextGeometry silently skips missing ones)
+const font = JSON.parse(readFileSync(new URL('./three/perfumeFont.json', import.meta.url)))
+for (const ch of BRAND) assert.ok(font.glyphs[ch]?.o, `glyph ${ch} in perfumeFont.json`)
 
 // stage choreography
 for (const isPortrait of [true, false]) {

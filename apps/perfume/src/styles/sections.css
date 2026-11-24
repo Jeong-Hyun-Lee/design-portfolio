@@ -50,11 +50,11 @@
 /* ---------- sticky step sections: notes, anatomy (TOP_DESIGN) ---------- */
 
 .notes {
-  height: 420vh;
+  height: 300vh;
 }
 
 .anatomy {
-  height: 340vh;
+  height: 240vh;
 }
 
 .sticky {
@@ -152,7 +152,7 @@
 /* ---------- dark to light (Letter) ---------- */
 
 .shift {
-  height: 200vh;
+  height: 150vh;
 }
 
 .shift-inner {
@@ -179,7 +179,7 @@
   font-weight: 300;
 }
 
-/* ---------- configurator (Letter) ---------- */
+/* ---------- configurator (Letter, quieted): hairline tabs, ink action ---------- */
 
 .atelier {
   display: flex;
@@ -190,7 +190,7 @@
 }
 
 .atelier-panel {
-  width: min(100%, 30rem);
+  width: min(100%, 27rem);
   align-self: center;
 }
 
@@ -200,179 +200,186 @@
 }
 
 .atelier-title {
-  font-family: var(--serif);
-  font-size: var(--t-serif-h);
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: 0.02em;
+  font-family: var(--logo);
+  font-size: clamp(2.5rem, 1.6rem + 2.4vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
 }
 
 .atelier-mood {
-  margin: 8px 0 32px;
+  margin: 12px 0 36px;
+  font-size: var(--t-small);
+  letter-spacing: 0.02em;
   color: var(--fog-text);
 }
 
 .choice {
-  margin-bottom: 24px;
+  padding: 16px 0 6px;
+  border-top: 1px solid rgb(0 0 0 / 0.1);
 }
 
-.choice legend {
-  margin-bottom: 10px;
-  font-size: var(--t-caption);
+/* floated so the legend sits inside the fieldset instead of cutting its top rule */
+.choice legend,
+.engrave-head,
+.atelier-total span {
+  float: left;
+  width: 100%;
+  margin-bottom: 6px;
+  font-size: 0.6875rem;
   font-weight: 500;
-  letter-spacing: 0.04em;
-}
-
-.scents {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-}
-
-.scent {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 2px 8px;
-  padding: 10px;
-  border: 1px solid var(--hairline);
-  border-radius: 2px;
-  background: rgb(255 255 255 / 0.55);
-  cursor: pointer;
-}
-
-.swatch {
-  grid-row: span 2;
-  width: 28px;
-  height: 40px;
-  border: 1px solid rgb(0 0 0 / 0.12);
-  border-radius: 2px;
-  background: linear-gradient(var(--wall) 45%, var(--juice) 45%);
-}
-
-.scent-no {
-  font-size: var(--t-caption);
+  letter-spacing: 0.14em;
   color: var(--fog-text);
 }
 
-.scent-name {
-  font-family: var(--serif);
-  font-size: 1.0625rem;
-  font-weight: 500;
-}
-
-.segmented {
+.options {
+  clear: both;
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: 1fr;
-  gap: 8px;
+  gap: 12px;
 }
 
-.segment {
+.option {
   display: grid;
-  justify-items: center;
   gap: 2px;
-  padding: 12px 8px;
-  border: 1px solid var(--hairline);
-  border-radius: 2px;
-  background: rgb(255 255 255 / 0.55);
-  font-size: var(--t-small);
-  cursor: pointer;
-}
-
-.segment small {
-  font-size: var(--t-caption);
+  padding: 10px 0 12px;
+  border-bottom: 1px solid transparent;
   color: var(--fog-text);
+  cursor: pointer;
+  transition: color 250ms, border-color 250ms;
 }
 
-.scent:has(input:checked),
-.segment:has(input:checked) {
-  border-color: var(--ink);
-  background: var(--paper);
-  font-weight: 500;
+.option-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--serif);
+  font-size: 1.0625rem;
 }
 
-.scent:has(input:focus-visible),
-.segment:has(input:focus-visible) {
-  outline: 2px solid var(--ink);
-  outline-offset: 2px;
+.option small {
+  font-size: var(--t-caption);
+  letter-spacing: 0.02em;
+}
+
+.option-swatch {
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-radius: 1px;
+  background: var(--juice);
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.12);
+}
+
+.option:has(input:checked) {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
+.option:has(input:focus-visible) {
+  outline: 1px solid var(--ink);
+  outline-offset: 4px;
 }
 
 .engrave {
-  display: grid;
-  gap: 10px;
-  margin-bottom: 28px;
+  display: block;
+  padding: 16px 0 4px;
+  border-top: 1px solid rgb(0 0 0 / 0.1);
 }
 
 .engrave-head {
   display: flex;
   justify-content: space-between;
-  font-size: var(--t-caption);
-  font-weight: 500;
-  letter-spacing: 0.04em;
 }
 
 .engrave-head small {
+  font-size: inherit;
   font-weight: 400;
-  color: var(--fog-text);
+  letter-spacing: 0.04em;
 }
 
-.engrave input {
-  padding: 12px 14px;
-  border: 1px solid var(--hairline);
-  border-radius: 2px;
-  background: var(--paper);
+.engrave-input {
+  clear: both;
+  width: 100%;
+  padding: 8px 0 10px;
+  border: 0;
+  border-bottom: 1px solid rgb(0 0 0 / 0.22);
+  border-radius: 0;
+  background: transparent;
   font-family: var(--serif);
-  font-size: 1.125rem;
+  font-size: 1.25rem;
+  transition: border-color 250ms;
 }
 
-.engrave input::placeholder {
-  color: var(--fog-text);
+.engrave-input::placeholder {
+  color: rgb(0 0 0 / 0.35);
 }
 
-.engrave input:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 0;
+.engrave-input:focus-visible {
+  outline: none;
+  border-bottom-color: var(--ink);
+  box-shadow: 0 1px 0 var(--ink);
 }
 
 .atelier-total {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
-  padding: 20px 0;
+  margin-top: 28px;
+  padding: 18px 0 24px;
   border-top: 1px solid var(--ink);
+}
+
+.atelier-total span {
+  float: none;
+  width: auto;
+  margin: 0;
 }
 
 .atelier-total strong {
   font-family: var(--serif);
   font-size: 1.75rem;
-  font-weight: 500;
+  font-weight: 400;
+  letter-spacing: 0.01em;
 }
 
 .atelier-actions {
+  display: grid;
+  gap: 16px;
+}
+
+/* the one action: ink with bone type, inverting to an outline on hover */
+.btn-buy {
   display: flex;
   align-items: center;
-  gap: 24px;
-}
-
-.btn-teal {
-  padding: 14px 27px;
-  border: 0;
+  justify-content: space-between;
+  width: 100%;
+  padding: 18px 24px;
+  border: 1px solid var(--vault);
   border-radius: 2px;
-  background: var(--teal);
-  color: var(--paper);
+  background: var(--vault);
+  color: var(--bone);
+  font-size: var(--t-small);
   font-weight: 500;
+  letter-spacing: 0.14em;
   cursor: pointer;
+  transition: background 300ms, color 300ms;
 }
 
-.link-teal {
-  color: var(--teal);
-  font-weight: 500;
-  text-decoration: none;
+.btn-buy .arrow {
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.link-teal span {
-  display: inline-block;
-  transition: transform 200ms;
+.link-quiet {
+  justify-self: center;
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: rgb(0 0 0 / 0.3);
+  text-underline-offset: 5px;
 }
 
 .atelier-notice {
@@ -452,7 +459,7 @@
 /* ---------- closing (Hyper Tria) ---------- */
 
 .closing {
-  height: 170vh;
+  height: 140vh;
 }
 
 .closing-inner {
@@ -491,17 +498,21 @@
 /* ---------- interaction states ---------- */
 
 @media (hover: hover) {
-  .btn-teal:hover {
-    background: #0f574e;
+  .btn-buy:hover {
+    background: transparent;
+    color: var(--ink);
   }
 
-  .link-teal:hover span {
-    transform: translateX(4px);
+  .btn-buy:hover .arrow {
+    transform: translateX(6px);
   }
 
-  .scent:hover,
-  .segment:hover {
-    border-color: var(--fog-text);
+  .option:hover {
+    color: var(--ink);
+  }
+
+  .link-quiet:hover {
+    text-decoration-color: var(--ink);
   }
 
   .btn-outline:hover {
@@ -568,10 +579,6 @@
   .craft-figures {
     grid-template-columns: 1fr;
   }
-
-  .scents {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -581,7 +588,9 @@
 
   .step-list li,
   .part-list li,
-  .link-teal span {
+  .option,
+  .btn-buy,
+  .btn-buy .arrow {
     transition: none;
   }
 }

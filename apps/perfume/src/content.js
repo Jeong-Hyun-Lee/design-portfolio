@@ -1,7 +1,7 @@
 // All page copy and product data. The brand is fictional (portfolio piece).
 
-export const BRAND = '윤슬'
-export const BRAND_LATIN = 'YUNSEUL'
+export const BRAND = 'Perfume'
+export const BRAND_LATIN = 'EAU DE PARFUM'
 
 export const NAV = [
   { id: 'notes', label: '향' },

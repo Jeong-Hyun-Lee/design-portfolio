@@ -67,6 +67,8 @@ const LAZY_DEPS = [
   'three',
   'three/examples/jsm/environments/RoomEnvironment.js',
   'three/examples/jsm/loaders/GLTFLoader.js',
+  'three/examples/jsm/loaders/FontLoader.js',
+  'three/examples/jsm/geometries/TextGeometry.js',
   'three/examples/jsm/misc/GPUComputationRenderer.js',
   '@react-three/fiber',
   '@react-three/drei',

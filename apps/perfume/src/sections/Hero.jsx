@@ -1,6 +1,6 @@
 import { BRAND } from '../content.js'
 
-/** The giant 윤슬 behind the bottle is drawn in WebGL (three/HeroTitle); this is the readable layer. */
+/** The giant logotype behind the bottle is drawn in WebGL (three/HeroTitle); this is the readable layer. */
 export default function Hero() {
   return (
     <section id="top" className="hero" aria-labelledby="hero-title">

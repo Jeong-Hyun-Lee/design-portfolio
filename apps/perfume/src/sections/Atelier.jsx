@@ -4,14 +4,18 @@ import { cleanEngraving, priceOf, scentById, setConfig, useConfig } from '../con
 
 const won = (n) => `${n.toLocaleString('ko-KR')}원`
 
-/** Segmented single choice built on native radios (keyboard and screen readers for free). */
-function Segmented({ legend, name, options, value, onChange }) {
+/**
+ * One row of hairline tabs on native radios (keyboard and screen readers for free).
+ * @param {{ legend: string, name: string, value: string|number, onChange: (v: any) => void,
+ *   options: { value: string|number, label: string, hint?: string, swatch?: string }[] }} props
+ */
+function Choice({ legend, name, options, value, onChange }) {
   return (
     <fieldset className="choice">
       <legend>{legend}</legend>
-      <div className="segmented">
+      <div className="options">
         {options.map((o) => (
-          <label key={o.value} className="segment">
+          <label key={o.value} className="option">
             <input
               type="radio"
               name={name}
@@ -20,7 +24,10 @@ function Segmented({ legend, name, options, value, onChange }) {
               onChange={() => onChange(o.value)}
               className="sr-only"
             />
-            <span>{o.label}</span>
+            <span className="option-label">
+              {o.swatch && <span className="option-swatch" style={{ '--juice': o.swatch }} aria-hidden="true" />}
+              {o.label}
+            </span>
             {o.hint && <small>{o.hint}</small>}
           </label>
         ))}
@@ -37,46 +44,34 @@ export default function Atelier() {
   const engravedLength = Array.from(config.engraving).length
 
   const reserve = () =>
-    setNotice(`${scent.name} ${config.volume}ml을 담았습니다. 윤슬은 포트폴리오용 가상 브랜드라 실제 주문은 받지 않습니다.`)
+    setNotice(`${scent.name} ${config.volume}ml을 담았습니다. Perfume은 포트폴리오용 가상 브랜드라 실제 주문은 받지 않습니다.`)
 
   return (
     <section id="atelier" className="atelier" aria-labelledby="atelier-title">
       <div className="atelier-panel">
         <p className="label">고르기</p>
         <h2 id="atelier-title" className="atelier-title">
-          나의 윤슬
+          My Perfume
         </h2>
-        <p className="atelier-mood">{scent.mood}</p>
+        <p className="atelier-mood">
+          {scent.no} {scent.name} · {scent.mood}
+        </p>
 
-        <fieldset className="choice">
-          <legend>시간</legend>
-          <div className="scents">
-            {SCENTS.map((s) => (
-              <label key={s.id} className="scent">
-                <input
-                  type="radio"
-                  name="scent"
-                  value={s.id}
-                  checked={config.scent === s.id}
-                  onChange={() => setConfig({ scent: s.id })}
-                  className="sr-only"
-                />
-                <span className="swatch" style={{ '--wall': s.wall, '--juice': s.liquid }} aria-hidden="true" />
-                <span className="scent-no">{s.no}</span>
-                <span className="scent-name">{s.name}</span>
-              </label>
-            ))}
-          </div>
-        </fieldset>
-
-        <Segmented
+        <Choice
+          legend="시간"
+          name="scent"
+          value={config.scent}
+          onChange={(id) => setConfig({ scent: id })}
+          options={SCENTS.map((s) => ({ value: s.id, label: s.name, swatch: s.liquid }))}
+        />
+        <Choice
           legend="마개"
           name="cap"
           value={config.cap}
           onChange={(cap) => setConfig({ cap })}
           options={CAPS.map((c) => ({ value: c.id, label: c.name }))}
         />
-        <Segmented
+        <Choice
           legend="용량"
           name="volume"
           value={config.volume}
@@ -92,6 +87,7 @@ export default function Atelier() {
             </small>
           </span>
           <input
+            className="engrave-input"
             type="text"
             value={config.engraving}
             onChange={(e) => setConfig({ engraving: cleanEngraving(e.target.value) })}
@@ -106,11 +102,14 @@ export default function Atelier() {
           <strong>{won(priceOf(config.volume))}</strong>
         </div>
         <div className="atelier-actions">
-          <button type="button" className="btn-teal" onClick={reserve}>
-            예약 구매
+          <button type="button" className="btn-buy" onClick={reserve}>
+            <span>예약 구매</span>
+            <span className="arrow" aria-hidden="true">
+              →
+            </span>
           </button>
-          <a className="link-teal" href="#craft">
-            공방 이야기 <span aria-hidden="true">→</span>
+          <a className="link-quiet" href="#craft">
+            공방 이야기 보기
           </a>
         </div>
         <p className="atelier-notice" role="status">

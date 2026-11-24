@@ -22,6 +22,8 @@ gsap.registerPlugin(ScrollTrigger, useGSAP)
 const Experience = lazy(() => import('./three/Experience.jsx'))
 // top and closing are tracked too so no nav link stays lit over sections it doesn't name
 const TRACKED = ['top', ...NAV.map((n) => n.id), 'closing']
+// lighter than Lenis' defaults (lerp 0.1, wheel 1): the page answers the wheel sooner and travels further
+const SCROLL_FEEL = { lerp: 0.16, wheelMultiplier: 1.25 }
 const VELOCITY_DECAY = 0.9 // per tick, so lens fringing fades once scrolling stops
 const clamp01 = (v) => Math.min(1, Math.max(0, v))
 
@@ -119,7 +121,7 @@ export default function App() {
   const isPortrait = useMedia('(max-aspect-ratio: 1/1)')
   const isLite = useMedia('(max-width: 760px), (pointer: coarse)')
   const active = useActiveSection(TRACKED)
-  useSmoothScroll(!isReducedMotion)
+  useSmoothScroll(!isReducedMotion, SCROLL_FEEL)
   const isCovered = useScrollRig()
   useReveal()
 

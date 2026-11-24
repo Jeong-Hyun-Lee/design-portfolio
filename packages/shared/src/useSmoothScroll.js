@@ -11,14 +11,15 @@ ScrollTrigger.config({ ignoreMobileResize: true })
 /**
  * Lenis smooth scrolling driven by GSAP's ticker so ScrollTrigger stays in sync.
  * @param {boolean} isEnabled off when the user prefers reduced motion
+ * @param {{ lerp?: number, wheelMultiplier?: number }} [options] Lenis feel; omit for its defaults
  */
-export function useSmoothScroll(isEnabled) {
+export function useSmoothScroll(isEnabled, { lerp, wheelMultiplier } = {}) {
   useEffect(() => {
     // web fonts change line heights; recompute trigger positions once they land
     document.fonts?.ready.then(() => ScrollTrigger.refresh())
     if (!isEnabled) return undefined
 
-    const lenis = new Lenis({ anchors: true, autoRaf: false })
+    const lenis = new Lenis({ anchors: true, autoRaf: false, ...(lerp && { lerp }), ...(wheelMultiplier && { wheelMultiplier }) })
     lenis.on('scroll', ScrollTrigger.update)
     const tick = (time) => lenis.raf(time * 1000)
     gsap.ticker.add(tick)
@@ -28,5 +29,5 @@ export function useSmoothScroll(isEnabled) {
       gsap.ticker.remove(tick)
       lenis.destroy()
     }
-  }, [isEnabled])
+  }, [isEnabled, lerp, wheelMultiplier])
 }

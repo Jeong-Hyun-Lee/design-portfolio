@@ -17,7 +17,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `apps/<이름>/`: 포트폴리오 하나가 Vite 앱 하나다. 각자 `index.html`, `src/`, `public/`, `vite.config.js`를 갖고, 빌드 결과도 각자의 `dist/`에 나온다.
   - `apps/studio-jeop`: "스튜디오 접" 사이트. 내부 구조는 `apps/studio-jeop/CLAUDE.md`에 있다.
   - `apps/product`: 3D 가상 공간 서비스 소개 페이지. 내부 구조는 `apps/product/CLAUDE.md`에 있다.
-  - `apps/perfume`: 가상 향수 브랜드 "윤슬" 런칭 페이지(고정 WebGL 캔버스 하나, GPGPU 입자, 유리 굴절, 후처리). 내부 구조는 `apps/perfume/CLAUDE.md`에 있다.
+  - `apps/perfume`: 가상 향수 브랜드 "Perfume" 런칭 페이지(고정 WebGL 캔버스 하나, GPGPU 입자, 유리 굴절, 후처리). 내부 구조는 `apps/perfume/CLAUDE.md`에 있다.
   - `apps/starter`: 새 포트폴리오를 시작할 때 복사하는 최소 앱.
 - `packages/shared/` (`@portfolio/shared`): 앱들이 함께 쓰는 코드. 빌드 단계 없이 소스를 그대로 import한다.
   - `vite.js`의 `defineStaticSite({ models })`: 모든 앱의 Vite 설정. 앱의 `vite.config.js`는 이것만 부른다.

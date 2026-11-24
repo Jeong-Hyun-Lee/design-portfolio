@@ -15,7 +15,7 @@ export default function Craft() {
         </h2>
         <div className="craft-body" data-reveal>
           <p>
-            윤슬은 작은 조향 공방에서 한 달에 삼백 병만 만듭니다. 원료를 섞은 뒤 마흔하루 동안 어두운 방에 두고, 매주 한 번씩
+            Perfume은 작은 조향 공방에서 한 달에 삼백 병만 만듭니다. 원료를 섞은 뒤 마흔하루 동안 어두운 방에 두고, 매주 한 번씩
             덜어낼 원료를 고릅니다.
           </p>
           <p>

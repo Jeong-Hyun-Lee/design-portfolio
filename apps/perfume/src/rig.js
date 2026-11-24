@@ -28,14 +28,14 @@ export function stageKeyframes(isPortrait) {
         { x: 0, y: 0.23, scale: 0.5 },
         { x: 0, y: 0.2, scale: 0.4 },
         { x: 0, y: 0.24, scale: 0.5 },
-        { x: 0, y: -0.9, scale: 0.5 },
+        { x: 0, y: -1.4, scale: 0.5 },
       ]
     : [
         { x: 0, y: -0.03, scale: 0.8 },
         { x: 0.2, y: 0, scale: 0.82 },
         { x: 0.2, y: -0.01, scale: 0.56 },
         { x: -0.2, y: -0.06, scale: 0.72 },
-        { x: -0.2, y: -0.9, scale: 0.6 },
+        { x: -0.2, y: -1.4, scale: 0.6 },
       ]
 }
 

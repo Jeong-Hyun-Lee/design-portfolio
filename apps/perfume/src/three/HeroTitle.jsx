@@ -13,7 +13,7 @@ const BEAMS = [
 ]
 const BEAM_TILT = 0.38
 
-/** Hero backdrop: the giant "윤슬" and a few light beams, both fading as the hero scrolls away. */
+/** Hero backdrop: the giant logotype and a few light beams, both fading as the hero scrolls away. */
 export default function HeroTitle({ isReducedMotion }) {
   const camera = useThree((s) => s.camera)
   const viewport = useThree((s) => s.viewport)

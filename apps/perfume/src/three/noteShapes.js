@@ -50,7 +50,7 @@ function middle(rand, i) {
   return [Math.cos(a) * radial + tx, 0.05 + lift + (rand() - 0.5) * 0.04, Math.sin(a) * radial + tz]
 }
 
-/** Base note: concentric ripples on still water under the bottle (윤슬 itself). */
+/** Base note: concentric ripples on still water under the bottle (light glinting on water). */
 function base(rand) {
   const ring = Math.floor(rand() * 7)
   const a = rand() * TAU

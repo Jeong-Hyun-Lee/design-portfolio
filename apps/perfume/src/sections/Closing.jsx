@@ -20,8 +20,8 @@ export function Closing() {
 export function Footer() {
   return (
     <footer className="footer">
-      <p>윤슬은 WebGL 포트폴리오를 위해 만든 가상 브랜드입니다. 제품, 가격, 공방은 실제가 아닙니다.</p>
-      <p>© 2026 YUNSEUL</p>
+      <p>Perfume은 WebGL 포트폴리오를 위해 만든 가상 브랜드입니다. 제품, 가격, 공방은 실제가 아닙니다.</p>
+      <p>© 2026 PERFUME</p>
     </footer>
   )
 }
