@@ -10,7 +10,10 @@
   "scripts": {
     "dev": "npm run dev -w apps/studio-jeop",
     "build": "npm run build --workspaces --if-present",
-    "check": "npm run check --workspaces --if-present"
+    "check": "npm run check --workspaces --if-present",
+    "deploy": "npm run deploy:product && npm run deploy:studio",
+    "deploy:product": "npm run build -w apps/product && npx --yes wrangler@4 pages deploy apps/product/dist --project-name room3d-product --branch main",
+    "deploy:studio": "npm run build -w apps/studio-jeop && npx --yes wrangler@4 pages deploy apps/studio-jeop/dist --project-name studio-jeop --branch main"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
