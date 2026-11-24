@@ -33,4 +33,9 @@
 
 ## 개발 지침
 
-기능 추가/변경, 버그 수정, 리팩터링 같은 개발 작업은 OMC `autopilot` 스킬(`/oh-my-claudecode:autopilot`)을 기본으로 사용하세요. 요구사항 정리부터 계획, 구현, 리뷰, 검증까지 autopilot이 한 흐름으로 진행합니다. 오타 수정, 한 줄 설정 변경, 단순 질의 같은 사소한 작업은 autopilot 없이 직접 처리합니다.
+기능 추가·변경, 버그 수정, 리팩터링 같은 개발 작업은 사용하는 도구에 맞춰 Autopilot으로 진행하세요.
+
+- **Claude Code**에서는 OMC(oh-my-claudecode)의 `/oh-my-claudecode:autopilot`을 사용하세요.
+- **Codex**에서는 OMX(oh-my-codex)를 사용하세요. `omx`로 세션을 시작한 뒤 사용자의 요청과 함께 `$autopilot`을 호출하세요.
+
+요구사항 정리부터 계획, 구현, 리뷰, 검증까지 Autopilot으로 진행합니다. 오타 수정, 한 줄 설정 변경, 단순 질의 같은 사소한 작업은 프로젝트 지침에서 허용하는 경우 직접 처리할 수 있습니다.

@@ -1,3 +1,5 @@
-# Repository instructions
+# 저장소 지침
 
-Run all commands for this repository through OMX Autopilot. Start the session with `omx` and invoke `$autopilot` with the user's request. Execute commands only within that workflow.
+공통 개발 지침(코딩 전 생각하기, 단순함 우선, 외과적 변경, 목표 기반 실행, 커밋 메시지 규칙, Caveman 모드, 에이전트 팀 지침)은 다음 파일을 따르세요.
+
+@.claude/common-guidelines.md

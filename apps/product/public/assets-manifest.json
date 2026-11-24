@@ -1,0 +1,137 @@
+[
+  {
+    "path": "public/images/hero/room.webp",
+    "width": 1600,
+    "height": 1000,
+    "bytes": 199922,
+    "type": "image",
+    "source": "ai-generated",
+    "alt": "나무 바닥과 흰 벽으로 이루어진 전시장 모형 안에 주황색 테두리의 영상 패널과 아바타 세 명이 보인다."
+  },
+  {
+    "path": "public/images/hero/room.jpg",
+    "width": 1600,
+    "height": 1000,
+    "bytes": 382092,
+    "type": "image",
+    "source": "ai-generated",
+    "alt": "나무 바닥과 흰 벽으로 이루어진 전시장 모형 안에 주황색 테두리의 영상 패널과 아바타 세 명이 보인다."
+  },
+  {
+    "path": "public/images/scenes/training.webp",
+    "width": 1200,
+    "height": 1500,
+    "bytes": 116532,
+    "type": "image",
+    "source": "ai-generated",
+    "alt": "나무 바닥의 3D 전시장에 실습 교육 영상이 걸려 있고 그 앞에 아바타가 서 있다."
+  },
+  {
+    "path": "public/images/scenes/training.jpg",
+    "width": 1200,
+    "height": 1500,
+    "bytes": 160097,
+    "type": "image",
+    "source": "ai-generated",
+    "alt": "나무 바닥의 3D 전시장에 실습 교육 영상이 걸려 있고 그 앞에 아바타가 서 있다."
+  },
+  {
+    "path": "public/images/scenes/expo.webp",
+    "width": 1200,
+    "height": 1500,
+    "bytes": 96238,
+    "type": "image",
+    "source": "ai-generated",
+    "alt": "3D 전시장 중앙의 흰 받침대 위에 둥근 조명 모형이 놓여 있다."
+  },
+  {
+    "path": "public/images/scenes/expo.jpg",
+    "width": 1200,
+    "height": 1500,
+    "bytes": 130861,
+    "type": "image",
+    "source": "ai-generated",
+    "alt": "3D 전시장 중앙의 흰 받침대 위에 둥근 조명 모형이 놓여 있다."
+  },
+  {
+    "path": "public/images/scenes/recruiting.webp",
+    "width": 1200,
+    "height": 1500,
+    "bytes": 104638,
+    "type": "image",
+    "source": "ai-generated",
+    "alt": "3D 전시장의 큰 벽면에 두 동료가 나오는 회사 소개 영상이 재생된다."
+  },
+  {
+    "path": "public/images/scenes/recruiting.jpg",
+    "width": 1200,
+    "height": 1500,
+    "bytes": 158559,
+    "type": "image",
+    "source": "ai-generated",
+    "alt": "3D 전시장의 큰 벽면에 두 동료가 나오는 회사 소개 영상이 재생된다."
+  },
+  {
+    "path": "public/images/scenes/classroom.webp",
+    "width": 1200,
+    "height": 1500,
+    "bytes": 87568,
+    "type": "image",
+    "source": "ai-generated",
+    "alt": "3D 강의실 벽면에 기하학 도형과 회색 막대가 있는 PDF 자료가 걸려 있다."
+  },
+  {
+    "path": "public/images/scenes/classroom.jpg",
+    "width": 1200,
+    "height": 1500,
+    "bytes": 126048,
+    "type": "image",
+    "source": "ai-generated",
+    "alt": "3D 강의실 벽면에 기하학 도형과 회색 막대가 있는 PDF 자료가 걸려 있다."
+  },
+  {
+    "path": "public/images/scenes/review.webp",
+    "width": 1200,
+    "height": 1500,
+    "bytes": 88090,
+    "type": "image",
+    "source": "ai-generated",
+    "alt": "3D 전시장 벽면에 아치, 둥근 조형물, 금속 링의 시안과 재질 견본이 나란히 걸려 있다."
+  },
+  {
+    "path": "public/images/scenes/review.jpg",
+    "width": 1200,
+    "height": 1500,
+    "bytes": 138249,
+    "type": "image",
+    "source": "ai-generated",
+    "alt": "3D 전시장 벽면에 아치, 둥근 조형물, 금속 링의 시안과 재질 견본이 나란히 걸려 있다."
+  },
+  {
+    "path": "public/images/story/team.webp",
+    "width": 2400,
+    "height": 1350,
+    "bytes": 200610,
+    "type": "image",
+    "source": "ai-generated",
+    "alt": "저녁 햇살이 드는 사무실에서 두 동료가 각자의 노트북으로 같은 3D 전시장을 보며 웃고 있다."
+  },
+  {
+    "path": "public/images/story/team.jpg",
+    "width": 2400,
+    "height": 1350,
+    "bytes": 243487,
+    "type": "image",
+    "source": "ai-generated",
+    "alt": "저녁 햇살이 드는 사무실에서 두 동료가 각자의 노트북으로 같은 3D 전시장을 보며 웃고 있다."
+  },
+  {
+    "path": "public/og.jpg",
+    "width": 1200,
+    "height": 630,
+    "bytes": 179942,
+    "type": "image",
+    "source": "ai-generated",
+    "alt": "나무 바닥과 흰 벽으로 이루어진 전시장 모형 안에 주황색 테두리의 영상 패널과 아바타 세 명, 교차하는 초록색 레이저 두 줄이 보인다."
+  }
+]

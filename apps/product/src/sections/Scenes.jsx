@@ -20,8 +20,14 @@ export default function Scenes() {
     () => {
       const mm = gsap.matchMedia()
       mm.add('(prefers-reduced-motion: no-preference)', () => {
-        const distance = () => track.current.scrollWidth - track.current.clientWidth
-        const slide = gsap.to(track.current, {
+        const row = track.current
+        const distance = () => {
+          const lastCard = row.lastElementChild.getBoundingClientRect()
+          const viewport = row.getBoundingClientRect()
+          const endPadding = parseFloat(getComputedStyle(row).paddingInlineEnd)
+          return Math.max(0, lastCard.right - viewport.right + endPadding)
+        }
+        const slide = gsap.to(row, {
           x: () => -distance(),
           ease: 'none',
           scrollTrigger: {
