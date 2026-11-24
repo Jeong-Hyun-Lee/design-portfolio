@@ -318,10 +318,49 @@ export default function App() {
         <Contact />
       </main>
       <footer className="footer">
-        <p>스튜디오 접</p>
-        <p>서울 영등포구 문래동 3가 철공소 골목</p>
-        <p>가로등 3D 모델: Microsoft, CC0</p>
-        <p>© 2026</p>
+        <div className="footer-head">
+          <p className="footer-mark">스튜디오 접</p>
+          <div className="footer-glyph">
+            <Glyph name="ㄱ" />
+          </div>
+        </div>
+
+        <div className="footer-cols">
+          <div>
+            <h2 className="footer-label">찾아오는 길</h2>
+            <address className="footer-text">
+              서울 영등포구 문래동 3가
+              <br />
+              철공소 골목
+            </address>
+          </div>
+          <div>
+            <h2 className="footer-label">연락</h2>
+            <a className="footer-link" href="mailto:hello@studio-jeop.kr">
+              hello@studio-jeop.kr
+            </a>
+          </div>
+          <nav aria-label="푸터 메뉴">
+            <h2 className="footer-label">둘러보기</h2>
+            <ul className="footer-nav">
+              {NAV.map((n) => (
+                <li key={n.id}>
+                  <a className="footer-link" href={`#${n.id}`}>
+                    {n.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+
+        <div className="footer-base">
+          <p>© 2026 스튜디오 접</p>
+          <p>가로등 3D 모델: Microsoft, CC0</p>
+          <a className="footer-link footer-up" href="#top">
+            맨 위로
+          </a>
+        </div>
       </footer>
     </>
   )
