@@ -1,0 +1,220 @@
+/* Two design references meet on this page (see TOP_DESIGN.md and DESIGN.md):
+   - dark stages follow Vivid+Co: obsidian, bone type, colour only from the prism in the glass
+   - light stages follow Letter: gallery walls, high-contrast serif, 2px corners, one teal action
+   --light (0..1) is written by App on every scroll, so text can follow the WebGL background. */
+
+:root {
+  /* TOP_DESIGN */
+  --obsidian: #101010;
+  --veil: #495764;
+  --ash: #403f3f;
+  --fog-blue: #6f879c;
+  --bone: #fffdf9;
+
+  /* DESIGN */
+  --vault: #191b1f;
+  --ink: #000000;
+  --fog-text: #5f6b6d; /* Fog Gray #9fabad darkened to pass 4.5:1 on paper and walls */
+  --hairline: #e6ebec;
+  --mist: #f6f9f9;
+  --paper: #ffffff;
+  --teal: #186f64;
+
+  --sans: 'IBM Plex Sans KR', system-ui, sans-serif;
+  --serif: 'Hahmlet', 'Noto Serif KR', Georgia, serif;
+
+  --light: 0;
+  --fg: color-mix(in srgb, var(--ink) calc(var(--light) * 100%), var(--bone));
+
+  --t-caption: 0.75rem;
+  --t-small: 0.875rem;
+  --t-body: 1rem;
+  --t-lede: 1.125rem;
+  --t-title: clamp(2.25rem, 1rem + 3.6vw, 4rem);
+  --t-serif-display: clamp(2.5rem, 1rem + 5vw, 5rem);
+  --t-serif-h: clamp(1.75rem, 1rem + 2.4vw, 2.875rem);
+
+  --nav-h: 64px;
+  --page-x: max(20px, calc((100% - 1320px) / 2));
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--obsidian);
+  color: var(--bone);
+  font-family: var(--sans);
+  font-size: var(--t-body);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  word-break: keep-all;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p,
+ol,
+ul,
+dl,
+dd,
+figure,
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+fieldset {
+  border: 0;
+  min-width: 0;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+main,
+.footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* WebGL failed: a still prism glow and the brand, so the hero is never empty */
+.stage-fallback {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(40% 30% at 45% 50%, rgb(42 127 255 / 0.25), transparent 70%),
+    radial-gradient(30% 25% at 58% 46%, rgb(255 42 42 / 0.2), transparent 70%),
+    var(--obsidian);
+}
+
+.stage-fallback span {
+  font-size: clamp(6rem, 3rem + 18vw, 22rem);
+  font-weight: 200;
+  line-height: 1;
+  color: var(--bone);
+}
+
+/* nav: Vivid+Co bare links + one outlined action; difference blend reads on dark and light */
+.nav {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  height: var(--nav-h);
+  padding: 0 var(--page-x);
+  color: var(--bone);
+  mix-blend-mode: difference;
+}
+
+.nav-logo {
+  font-size: 1.125rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 4px;
+}
+
+.nav-links a {
+  display: block;
+  padding: 8px 10px;
+  font-size: var(--t-small);
+  text-decoration: none;
+  opacity: 0.72;
+}
+
+.nav-links a[aria-current='true'] {
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+.nav-cta {
+  margin-left: auto;
+  padding: 8px 16px;
+  border: 1px solid currentColor;
+  font-size: var(--t-small);
+  text-decoration: none;
+}
+
+.label {
+  margin-bottom: 20px;
+  font-size: var(--t-caption);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 800ms, transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-revealed='true'] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (hover: hover) {
+  .nav-links a:hover {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 760px) {
+  .nav-links {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    transform: none;
+    transition: opacity 300ms;
+  }
+}

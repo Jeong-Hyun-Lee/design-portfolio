@@ -1,0 +1,587 @@
+/* ---------- hero (TOP_DESIGN) ---------- */
+
+.hero {
+  display: flex;
+  align-items: flex-end;
+  min-height: 100svh;
+  padding: 0 var(--page-x) clamp(24px, 5vh, 48px);
+}
+
+.hero-foot {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 16px 40px;
+  width: 100%;
+}
+
+.hero-lede {
+  max-width: 20em;
+  font-size: var(--t-lede);
+  font-weight: 300;
+}
+
+.hero-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: var(--t-caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fog-blue);
+}
+
+.hero-cue {
+  grid-column: 1 / -1;
+  justify-self: center;
+  font-size: var(--t-caption);
+  letter-spacing: 0.2em;
+  color: var(--fog-blue);
+  animation: cue 2.4s ease-in-out infinite;
+}
+
+@keyframes cue {
+  50% {
+    transform: translateY(6px);
+    opacity: 0.5;
+  }
+}
+
+/* ---------- sticky step sections: notes, anatomy (TOP_DESIGN) ---------- */
+
+.notes {
+  height: 420vh;
+}
+
+.anatomy {
+  height: 340vh;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  max-width: calc(30rem + var(--page-x));
+  padding: var(--nav-h) 0 0 var(--page-x);
+}
+
+.title {
+  margin-bottom: clamp(28px, 5vh, 56px);
+  font-size: var(--t-title);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+.step-list,
+.part-list {
+  display: grid;
+  gap: 28px;
+}
+
+.step-list li,
+.part-list li {
+  opacity: 0.28;
+  transition: opacity 500ms;
+}
+
+.step-list li[data-active="true"],
+.part-list li[data-active="true"] {
+  opacity: 1;
+}
+
+.step-tier {
+  margin-bottom: 6px;
+  font-size: var(--t-caption);
+  letter-spacing: 0.04em;
+  color: var(--fog-blue);
+}
+
+.step-tier span {
+  margin-right: 8px;
+  letter-spacing: 0.12em;
+}
+
+.step-title {
+  margin-bottom: 8px;
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.step-body {
+  max-width: 26em;
+  font-size: var(--t-small);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.part-list li {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 2px 0;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--ash);
+}
+
+.part-no {
+  grid-row: span 2;
+  padding-top: 6px;
+  font-size: var(--t-caption);
+  letter-spacing: 0.12em;
+  color: var(--fog-blue);
+}
+
+.part-name {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.part-spec {
+  font-size: var(--t-small);
+  font-weight: 300;
+}
+
+/* ---------- dark to light (Letter) ---------- */
+
+.shift {
+  height: 200vh;
+}
+
+.shift-inner {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 24px;
+  padding: 0 var(--page-x);
+  text-align: center;
+  color: var(--fg);
+}
+
+.shift-title {
+  font-family: var(--serif);
+  font-size: var(--t-serif-display);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+}
+
+.shift-sub {
+  max-width: 26em;
+  font-size: var(--t-lede);
+  font-weight: 300;
+}
+
+/* ---------- configurator (Letter) ---------- */
+
+.atelier {
+  display: flex;
+  justify-content: flex-end;
+  min-height: 100svh;
+  padding: calc(var(--nav-h) + 24px) var(--page-x) 64px;
+  color: var(--ink);
+}
+
+.atelier-panel {
+  width: min(100%, 30rem);
+  align-self: center;
+}
+
+.atelier .label,
+.craft .label {
+  color: var(--fog-text);
+}
+
+.atelier-title {
+  font-family: var(--serif);
+  font-size: var(--t-serif-h);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+.atelier-mood {
+  margin: 8px 0 32px;
+  color: var(--fog-text);
+}
+
+.choice {
+  margin-bottom: 24px;
+}
+
+.choice legend {
+  margin-bottom: 10px;
+  font-size: var(--t-caption);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.scents {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.scent {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 8px;
+  padding: 10px;
+  border: 1px solid var(--hairline);
+  border-radius: 2px;
+  background: rgb(255 255 255 / 0.55);
+  cursor: pointer;
+}
+
+.swatch {
+  grid-row: span 2;
+  width: 28px;
+  height: 40px;
+  border: 1px solid rgb(0 0 0 / 0.12);
+  border-radius: 2px;
+  background: linear-gradient(var(--wall) 45%, var(--juice) 45%);
+}
+
+.scent-no {
+  font-size: var(--t-caption);
+  color: var(--fog-text);
+}
+
+.scent-name {
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  font-weight: 500;
+}
+
+.segmented {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 8px;
+}
+
+.segment {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  padding: 12px 8px;
+  border: 1px solid var(--hairline);
+  border-radius: 2px;
+  background: rgb(255 255 255 / 0.55);
+  font-size: var(--t-small);
+  cursor: pointer;
+}
+
+.segment small {
+  font-size: var(--t-caption);
+  color: var(--fog-text);
+}
+
+.scent:has(input:checked),
+.segment:has(input:checked) {
+  border-color: var(--ink);
+  background: var(--paper);
+  font-weight: 500;
+}
+
+.scent:has(input:focus-visible),
+.segment:has(input:focus-visible) {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.engrave {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.engrave-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--t-caption);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.engrave-head small {
+  font-weight: 400;
+  color: var(--fog-text);
+}
+
+.engrave input {
+  padding: 12px 14px;
+  border: 1px solid var(--hairline);
+  border-radius: 2px;
+  background: var(--paper);
+  font-family: var(--serif);
+  font-size: 1.125rem;
+}
+
+.engrave input::placeholder {
+  color: var(--fog-text);
+}
+
+.engrave input:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 0;
+}
+
+.atelier-total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-top: 1px solid var(--ink);
+}
+
+.atelier-total strong {
+  font-family: var(--serif);
+  font-size: 1.75rem;
+  font-weight: 500;
+}
+
+.atelier-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.btn-teal {
+  padding: 14px 27px;
+  border: 0;
+  border-radius: 2px;
+  background: var(--teal);
+  color: var(--paper);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.link-teal {
+  color: var(--teal);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.link-teal span {
+  display: inline-block;
+  transition: transform 200ms;
+}
+
+.atelier-notice {
+  min-height: 3em;
+  margin-top: 16px;
+  font-size: var(--t-small);
+  color: var(--fog-text);
+}
+
+/* ---------- craft: opaque paper (Letter editorial) ---------- */
+
+.craft {
+  position: relative;
+  z-index: 2;
+  min-height: 110svh;
+  padding: clamp(96px, 16vh, 160px) var(--page-x);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.craft-inner {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 0 24px;
+}
+
+.craft .label {
+  grid-column: 1 / -1;
+}
+
+.craft-title {
+  grid-column: 1 / span 6;
+  font-family: var(--serif);
+  font-size: var(--t-serif-display);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+}
+
+.craft-body {
+  grid-column: 8 / -1;
+  display: grid;
+  gap: 1.2em;
+  align-self: end;
+  font-size: var(--t-lede);
+  line-height: 1.7;
+}
+
+.craft-figures {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: clamp(64px, 12vh, 120px);
+  border-top: 1px solid var(--hairline);
+}
+
+.craft-figures > div {
+  padding: 24px 24px 0 0;
+}
+
+.craft-figures dt {
+  font-size: var(--t-small);
+  color: var(--fog-text);
+}
+
+.craft-figures dd {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+}
+
+.craft-figures dd span {
+  font-size: clamp(3rem, 2rem + 4vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+}
+
+/* ---------- closing (Hyper Tria) ---------- */
+
+.closing {
+  height: 170vh;
+}
+
+.closing-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 24px;
+  padding-bottom: clamp(48px, 10vh, 96px);
+}
+
+.closing-line {
+  font-size: var(--t-lede);
+  font-weight: 300;
+}
+
+.btn-outline {
+  padding: 12px 27px;
+  border: 1px solid var(--bone);
+  font-size: var(--t-small);
+  text-decoration: none;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+  padding: 24px var(--page-x) 32px;
+  border-top: 1px solid var(--ash);
+  background: #050505;
+  font-size: var(--t-caption);
+  color: var(--fog-blue);
+}
+
+/* ---------- interaction states ---------- */
+
+@media (hover: hover) {
+  .btn-teal:hover {
+    background: #0f574e;
+  }
+
+  .link-teal:hover span {
+    transform: translateX(4px);
+  }
+
+  .scent:hover,
+  .segment:hover {
+    border-color: var(--fog-text);
+  }
+
+  .btn-outline:hover {
+    background: var(--bone);
+    color: var(--obsidian);
+  }
+}
+
+/* ---------- portrait screens: copy under the bottle ---------- */
+
+@media (max-aspect-ratio: 1/1) {
+  .steps {
+    justify-content: flex-end;
+    max-width: none;
+    padding: 0 var(--page-x) 6vh;
+    background: linear-gradient(transparent, rgb(16 16 16 / 0.85) 38%);
+  }
+
+  .title {
+    margin-bottom: 20px;
+  }
+
+  .step-list,
+  .part-list {
+    gap: 14px;
+  }
+
+  /* only the active step keeps its body, so the copy never climbs over the bottle */
+  .step-list li:not([data-active="true"]) .step-body,
+  .part-list li:not([data-active="true"]) .part-spec {
+    display: none;
+  }
+
+  .atelier {
+    justify-content: center;
+    padding-top: 52svh;
+  }
+
+  .atelier-panel {
+    padding: 24px 20px;
+    border-radius: 2px;
+    background: rgb(255 255 255 / 0.9);
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-foot {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-meta {
+    align-items: flex-start;
+  }
+
+  .craft-title,
+  .craft-body {
+    grid-column: 1 / -1;
+  }
+
+  .craft-body {
+    margin-top: 32px;
+  }
+
+  .craft-figures {
+    grid-template-columns: 1fr;
+  }
+
+  .scents {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-cue {
+    animation: none;
+  }
+
+  .step-list li,
+  .part-list li,
+  .link-teal span {
+    transition: none;
+  }
+}

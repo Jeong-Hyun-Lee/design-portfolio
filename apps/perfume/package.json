@@ -1,0 +1,15 @@
+{
+  "name": "perfume",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "node src/check.js"
+  },
+  "dependencies": {
+    "@portfolio/shared": "*"
+  }
+}
