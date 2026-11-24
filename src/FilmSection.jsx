@@ -65,7 +65,7 @@ export default function FilmSection() {
           controls={hasControls}
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
-          aria-label="장갑 낀 손이 아연 도금판에 파란 접는 선을 긋고, ㄱ 자로 접힌 철판이 놓인 작업실 장면"
+          aria-label="문래동 작업실의 파란 접는 선과 철판에서 책 표지, 금속 가구, 골목 간판, 로스터리로 이어지는 영상"
         >
           <source src={VIDEO_WEBM} type="video/webm" />
           <source src={VIDEO_MP4} type="video/mp4" />

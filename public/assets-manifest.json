@@ -3,19 +3,19 @@
     "path": "public/media/studio-film.mp4",
     "width": 1920,
     "height": 1080,
-    "bytes": 1237142,
+    "bytes": 4159357,
     "type": "video",
     "source": "ffmpeg-from-stills",
-    "alt": "장갑 낀 손이 아연 도금판에 파란 접는 선을 긋고 ㄱ자로 접힌 철판이 놓인 작업실 장면"
+    "alt": "문래동 작업실의 파란 접는 선과 철판에서 책 표지, 금속 가구, 골목 간판, 로스터리로 이어지는 영상"
   },
   {
     "path": "public/media/studio-film.webm",
     "width": 1920,
     "height": 1080,
-    "bytes": 624818,
+    "bytes": 2514045,
     "type": "video",
     "source": "ffmpeg-from-stills",
-    "alt": "장갑 낀 손이 아연 도금판에 파란 접는 선을 긋고 ㄱ자로 접힌 철판이 놓인 작업실 장면"
+    "alt": "문래동 작업실의 파란 접는 선과 철판에서 책 표지, 금속 가구, 골목 간판, 로스터리로 이어지는 영상"
   },
   {
     "path": "public/media/studio-film-poster.jpg",
