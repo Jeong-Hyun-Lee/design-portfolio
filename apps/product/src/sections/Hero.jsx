@@ -41,20 +41,9 @@ export default function Hero({ ref }) {
         </SceneBoundary>
       </div>
 
-      <div className="window" data-speed="-0.6">
-        <div className="window-bar" aria-hidden="true">
-          <span className="window-dot" />
-          <span className="window-dot" />
-          <span className="window-dot" />
-          <span className="window-tag">R3</span>
-        </div>
-        <h1 id="hero-title" className="window-title">
-          {PRODUCT}
-        </h1>
-        <a className="window-cta" href="#reserve">
-          체험 신청 <span aria-hidden="true">›</span>
-        </a>
-      </div>
+      <h1 id="hero-title" className="sr-only">
+        {PRODUCT} — 브라우저에서 여는 3D 전시·회의 공간
+      </h1>
     </section>
   )
 }

@@ -3,7 +3,6 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import RoomLight from '@portfolio/shared/RoomLight.jsx'
 import RoomModel from './RoomModel.jsx'
-import Lasers from './Lasers.jsx'
 
 const LOOK_AT = [0, 0.9, 0]
 const FIT_WIDTH = 9 // world units the room needs across
@@ -39,7 +38,6 @@ export default function HeroScene({ progress, isActive }) {
       <Rig progress={progress}>
         <RoomModel />
       </Rig>
-      <Lasers fade={progress} />
     </Canvas>
   )
 }
